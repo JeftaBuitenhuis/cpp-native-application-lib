@@ -1,4 +1,4 @@
-#include "event/PUF_event.h"
+#include "puffin/PUF_event.h"
 
 PUF_EventHandler* PUF_EventHandler::instance = nullptr;
 
@@ -15,8 +15,7 @@ PUF_EventHandler* PUF_EventHandler::getInstance() {
 
 PUF_event PUF_EventHandler::pop() {
     if (!event_queue.empty()) {
-        PUF_event event = event_queue.front();
-        event_queue.pop();
+        PUF_event event = event_queue.pop();
         return event;
     } else {
         return PUF_event();

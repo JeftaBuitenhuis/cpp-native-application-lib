@@ -4,7 +4,7 @@
 #include <SDL2/SDL.h>
 #include "pixel.cpp"
 #include <vector>
-#include "event/PUF_event.h"
+#include "puffin/PUF_event.h"
 
 class Renderer {
     public:

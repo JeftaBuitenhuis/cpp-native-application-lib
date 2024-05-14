@@ -1,7 +1,9 @@
+/* Puffin events */
+
 #ifndef PUF_EVENT_H
 #define PUF_EVENT_H
 
-#include <queue>
+#include <puffin/PUF_queue.h>
 #include <cstdint>
 
 typedef enum {
@@ -41,7 +43,7 @@ class PUF_EventHandler {
         static PUF_EventHandler* getInstance();
 
     private:
-        std::queue<PUF_event> event_queue;
+        PUF_queue<PUF_event> event_queue;
 };
 
 #endif

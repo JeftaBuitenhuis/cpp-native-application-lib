@@ -1,7 +1,7 @@
 #include <thread>
 #include <chrono>
 #include <iostream>
-#include "event/PUF_event.h"
+#include "puffin/PUF_event.h"
 
 
 class App {
