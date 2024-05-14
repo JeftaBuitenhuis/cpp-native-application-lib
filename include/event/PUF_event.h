@@ -1,4 +1,8 @@
+#ifndef PUF_EVENT_H
+#define PUF_EVENT_H
+
 #include <queue>
+#include <cstdint>
 
 typedef enum {
     /* Library events */
@@ -34,33 +38,10 @@ class PUF_EventHandler {
         PUF_event pop();
         bool empty();
 
-        static PUF_EventHandler* getInstance() {
-            if (instance == nullptr) {
-                instance = new PUF_EventHandler();
-            }
-            return instance;
-        }
+        static PUF_EventHandler* getInstance();
 
     private:
         std::queue<PUF_event> event_queue;
 };
 
-PUF_EventHandler* PUF_EventHandler::instance = NULL;
-
-void PUF_EventHandler::push(PUF_event event) {
-    event_queue.push(event);
-}
-
-PUF_event PUF_EventHandler::pop() {
-    if (!event_queue.empty()) {
-        PUF_event event = event_queue.front();
-        event_queue.pop();
-        return event;
-    } else {
-        return PUF_event();
-    }
-}
-
-bool PUF_EventHandler::empty() {
-    return event_queue.empty();
-}
+#endif

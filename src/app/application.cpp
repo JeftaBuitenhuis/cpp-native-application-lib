@@ -1,22 +1,8 @@
-#ifndef STD_THREAD_H
-#define STD_THREAD_H
 #include <thread>
-#endif
-
-#ifndef CHRONO_H
-#define CHRONO_H
 #include <chrono>
-#endif
-
-#ifndef STD_IOSTREAM_H
-#define STD_IOSTREAM_H
 #include <iostream>
-#endif
+#include "event/PUF_event.h"
 
-#ifndef PUF_EVENT
-#define PUF_EVENT
-#include "../event/PUF_event.cpp"
-#endif
 
 class App {
     public:

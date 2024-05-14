@@ -1,37 +1,10 @@
-#ifndef STD_THREAD_H
-#define STD_THREAD_H
 #include <thread>
-#endif
-
-#ifndef CHRONO_H
-#define CHRONO_H
 #include <chrono>
-#endif
-
-#ifndef STD_IOSTREAM_H
-#define STD_IOSTREAM_H
 #include <iostream>
-#endif
-
-#ifndef SDL2_H
-#define SDL2_H
 #include <SDL2/SDL.h>
-#endif
-
-#ifndef PIXEL_H
-#define PIXEL_H
 #include "pixel.cpp"
-#endif
-
-#ifndef VEC_H
-#define VEC_H
 #include <vector>
-#endif
-
-#ifndef PUF_EVENT
-#define PUF_EVENT
-#include "../event/PUF_event.cpp"
-#endif
+#include "event/PUF_event.h"
 
 class Renderer {
     public:
