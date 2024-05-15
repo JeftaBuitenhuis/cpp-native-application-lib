@@ -4,6 +4,8 @@
 
 //! multiple windows not supported currently
 
+//! currently has a massive memory leak :/
+
 int main(void) {
     App app;
     app.init();
@@ -13,11 +15,13 @@ int main(void) {
 
     GUI_window* win = new GUI_window(1000, 1000, GUI_WINDOW_RESIZABLE);
     GUI_renderer* renderer = new GUI_renderer(500, 500);
-    for (int x = 0; x < 500; x++) {
+    for (int x = 0; x < 1000; x++) {
         renderer->setPixel(x, 250, 0xFFFFFFFF);
     }
-    GUI_section* section = new GUI_section(renderer, 0, 0);
+    GUI_section* section = new GUI_section(renderer, 250, 0);
     win->addSection(section);
+    GUI_section* section2 = new GUI_section(renderer, 500, 250);
+    win->addSection(section2);
     win->init();
     
 

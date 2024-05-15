@@ -1,6 +1,6 @@
 #include "gui/section/GUI_section.h"
 
-GUI_section::GUI_section(GUI_renderer* renderer, int pos_y, int pos_x) {
+GUI_section::GUI_section(GUI_renderer* renderer, int pos_x, int pos_y) {
     this->renderer = renderer;
     this->pos_x = pos_x;
     this->pos_y = pos_y;
