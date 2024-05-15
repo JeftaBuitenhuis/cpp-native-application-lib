@@ -3,19 +3,15 @@
 #ifndef PUF_QUEUE_H
 #define PUF_QUEUE_H
 
+#include <iostream>
+
 template <typename T> class PUF_sll_node {
-    private:
-        T* node = nullptr;
-        T* next = nullptr;
-
     public:
-        T* getNext();
-        void setNext(T*);
-        T get();
-        void set(T);
+        T data;
+        PUF_sll_node* next = nullptr;
 
-        PUF_sll_node(T n_node) {
-            node = &n_node;
+        PUF_sll_node(T data) {
+            this->data = data;
         }
 };
 
@@ -32,46 +28,28 @@ template <typename T> class PUF_queue {
         bool empty();
 };
 
-#include "puffin/PUF_queue.h"
+template <typename T> void PUF_queue<T>::push(T data) {
+    PUF_sll_node<T>* node = new PUF_sll_node<T>(data);
 
-template <typename T> T* PUF_sll_node<T>::getNext() {
-    return next;
-}
-
-template <typename T> T PUF_sll_node<T>::get() {
-    return *node;
-}
-
-template <typename T> void PUF_sll_node<T>::setNext(T* t) {
-    next = t;
-}
-
-template <typename T> void PUF_sll_node<T>::set(T t) {
-    node = &t;
-} 
-
-template <typename T> void PUF_queue<T>::push(T t) {
-    PUF_sll_node node = PUF_sll_node(t);
-    if (tail == nullptr) {
-        head = &node;
-        head->setNext(&t);
-        tail = &node;
-    } else {
-        tail->setNext(&t);
-        tail = &node;
+    if (head == nullptr) {
+        head = node;
+        head->next = tail;
+        tail = node;
+        return;
     }
+
+    tail->next = node;
+    tail = node;
 } 
 
 template <typename T> T PUF_queue<T>::pop() {
-    T head_val = head->get();
-    PUF_sll_node node = PUF_sll_node(*(head->getNext())); //seg-fault!?!?
-    head = &node;
-    return head_val;
+    T data = head->data;
+    head = head->next;
+    return data;
 } 
 
 template <typename T> T PUF_queue<T>::scan() {
-    T head_val = head->get();
-    return head_val;
+    return head->data;
 }
 
 template <typename T> PUF_sll_node<T>* PUF_queue<T>::getHeadNode() {
@@ -79,11 +57,7 @@ template <typename T> PUF_sll_node<T>* PUF_queue<T>::getHeadNode() {
 }
 
 template <typename T> bool PUF_queue<T>::empty() {
-    if (head == nullptr) {
-        return true;
-    } else {
-        return false;
-    }
+    return (head == nullptr);
 }
 
 #endif
