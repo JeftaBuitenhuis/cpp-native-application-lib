@@ -2,6 +2,8 @@
 #include "render/renderer.cpp"
 #include "gui/window/GUI_window.h"
 
+//! multiple windows not supported currently
+
 int main(void) {
     App app;
     app.init();
@@ -17,6 +19,7 @@ int main(void) {
     GUI_section* section = new GUI_section(renderer, 0, 0);
     win->addSection(section);
     win->init();
+    
 
     win->join();
 
