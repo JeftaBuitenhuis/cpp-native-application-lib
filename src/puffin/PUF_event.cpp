@@ -1,3 +1,5 @@
+//! popfind() unstable -> segfault
+
 #include "puffin/PUF_event.h"
 
 PUF_EventHandler* PUF_EventHandler::instance = nullptr;
@@ -18,10 +20,53 @@ PUF_event PUF_EventHandler::pop() {
         PUF_event event = event_queue.pop();
         return event;
     } else {
-        return PUF_event();
+        PUF_event event;
+        event.type = PUF_NOTFOUND;
+        return event;
     }
 }
 
 bool PUF_EventHandler::empty() {
     return event_queue.empty();
+}
+
+void PUF_EventHandler::scanfind(PUF_event* event) {
+    PUF_sll_node<PUF_event>* node = event_queue.getHeadNode();
+
+    while (node != nullptr) {
+        if (node->data.type == event->type) {
+            event = &(node->data);
+            return;
+        }
+
+        node = node->next;  
+    }
+    event->type = PUF_NOTFOUND;
+}
+
+void PUF_EventHandler::popfind(PUF_event* event) {
+    if (event == nullptr) {
+        // Handle invalid input pointer
+        return;
+    }
+
+    PUF_sll_node<PUF_event>* node = event_queue.getHeadNode();
+    PUF_sll_node<PUF_event>* prev = nullptr;
+    while (node != nullptr) {
+        if (node->data.type == event->type) {
+            if (prev != nullptr) {
+                prev->next = node->next;
+            } else {
+                event_queue.setHeadNode(node->next);
+            }
+
+            *event = node->data;
+            delete node;
+            return;
+        }
+        prev = node;
+        node = node->next;  
+    }
+
+    event->type = PUF_NOTFOUND;
 }

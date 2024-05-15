@@ -38,13 +38,13 @@ int App::main() {
         PUF_EventHandler* event_handler 
         = PUF_EventHandler ::getInstance(); 
         PUF_event event;
-        event.type = 0xFFFF;
+        event.type = 0xFFFE;
         event.x = x;
         event_handler->push(event);
 
         x++;
 
-        next += std::chrono::milliseconds(1000/240);
+        next += std::chrono::nanoseconds(100);
         std::this_thread::sleep_until(next);
     }
 

@@ -36,7 +36,7 @@ int Renderer::main() {
         throw "Error initializing SDL";
     }
 
-    SDL_Window* win = SDL_CreateWindow("Application", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1000, 1000, SDL_WINDOW_RESIZABLE);
+    SDL_Window* win = SDL_CreateWindow("Application", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 3000, 2000, SDL_WINDOW_RESIZABLE);
     SDL_Renderer *renderer = SDL_CreateRenderer(win, 0, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     SDL_Event event;
 
@@ -89,8 +89,7 @@ int Renderer::main() {
             count++;
             PUF_event event = event_handler->pop();
             switch (event.type) {
-            case 0xFFFF: {
-
+            case 0xFFFE: {
                 x = event.x;
                 break;
             }

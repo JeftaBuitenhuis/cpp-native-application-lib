@@ -20,6 +20,8 @@ typedef enum {
 
     /* Clipboard events */
     PUF_CLIPBOARDUPDATE = 0x1000,
+
+    PUF_NOTFOUND        = 0xFFFF, // This is returned if the PUF_EventHandler doesnt find a event.
 } PUF_EventType;
 
 struct PUF_event{
@@ -39,6 +41,8 @@ class PUF_EventHandler {
         void push(PUF_event);
         PUF_event pop();
         bool empty();
+        void scanfind(PUF_event* event);
+        void popfind(PUF_event* event);
 
         static PUF_EventHandler* getInstance();
 

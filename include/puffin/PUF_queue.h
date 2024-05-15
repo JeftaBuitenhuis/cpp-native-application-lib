@@ -26,6 +26,7 @@ template <typename T> class PUF_queue {
         T scan();
         PUF_sll_node<T>* getHeadNode();
         bool empty();
+        void setHeadNode(PUF_sll_node<T>*);
 };
 
 template <typename T> void PUF_queue<T>::push(T data) {
@@ -43,8 +44,10 @@ template <typename T> void PUF_queue<T>::push(T data) {
 } 
 
 template <typename T> T PUF_queue<T>::pop() {
-    T data = head->data;
+    PUF_sll_node<T>* old_head = head;
     head = head->next;
+    T data = old_head->data;
+    delete old_head;
     return data;
 } 
 
@@ -58,6 +61,10 @@ template <typename T> PUF_sll_node<T>* PUF_queue<T>::getHeadNode() {
 
 template <typename T> bool PUF_queue<T>::empty() {
     return (head == nullptr);
+}
+
+template <typename T> void PUF_queue<T>::setHeadNode(PUF_sll_node<T>* node) {
+    head = node;
 }
 
 #endif
