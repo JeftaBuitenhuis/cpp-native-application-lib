@@ -14,7 +14,7 @@ int main() {
     bool up = true;
     bool left = true;
 
-    auto next = std::chrono::steady_clock::now();
+    //auto next = std::chrono::steady_clock::now();
     while (!win->getTerminate()) {
         if (up && left) {
             for (int x = 0; x < 500; x++) {
@@ -46,8 +46,8 @@ int main() {
 
         win->update();
 
-        next += std::chrono::milliseconds(10);
-        std::this_thread::sleep_until(next);
+        // next += std::chrono::milliseconds(15);
+        // std::this_thread::sleep_until(next);
     }
 
     win->join();

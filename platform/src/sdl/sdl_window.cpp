@@ -8,8 +8,8 @@ SDL_IWindow::SDL_IWindow(int width, int height, uint32_t hex_bg, int flags) : Wi
     }
 
     win = SDL_CreateWindow("Application", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, flags);
-    renderer = SDL_CreateRenderer(win, 0, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    buffer = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STREAMING, width, height);
+    renderer = SDL_CreateRenderer(win, 0, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);//SDL_RENDERER_PRESENTVSYNC
+    buffer = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STREAMING, width, height);
 
     window_thread = std::thread([this]() {
         this->main(); 
@@ -72,24 +72,45 @@ SDL_IWindow::~SDL_IWindow() {
 }
 
 void SDL_IWindow::setPixel(int x, int y, uint32_t hex) {
-    pixel 
+    this->pixels[x+(y*width)] = hex;
 }
 
 void SDL_IWindow::update() {
+    int pitch = width * height * sizeof(uint32_t) + 10; // Declare a variable to store the pitch
+    if (SDL_LockTexture(buffer, nullptr, (void **)&pixels, &pitch) != 0) {
+        std::cerr << "Failed to lock texture: " << SDL_GetError() << std::endl;
+        return;
+    }
+
+    // Modify pixel data (if needed)
+
+    // Unlock the texture when done
+    SDL_UnlockTexture(buffer);
+
+    // Clear the renderer
     SDL_RenderClear(renderer);
-    for (int x = 0; x < width; x++) {
-        for (int y = 0; y < height; y++) {
-            GUI_pixel* p = buffer
-            SDL_SetRenderDrawColor(renderer, p->getR(), p->getG(), p->getB(), p->getA());
-            SDL_RenderDrawPoint(renderer, x, y);
-        }
-    }   
+
+    // Copy the texture to the renderer
+    SDL_RenderCopy(renderer, buffer, nullptr, nullptr);
+
+    // Present the renderer
     SDL_RenderPresent(renderer);
-    clearScreen();    clearScreen();
+
+    // Optionally, clear the buffer or perform other cleanup
+    clearBuffer();
+    // Capture the current time after running the code
+    auto end = std::chrono::steady_clock::now();
+
+    // Calculate the duration between the two time points
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+
+    // Output the duration in nanoseconds
+    std::cout << "FPS: " << 1 / ((double) duration.count()/1000) << "\n";
+    start = std::chrono::steady_clock::now();
 }
 
-void SDL_IWindow::setScreen(GUI_screen* screen) {
-
+void SDL_IWindow::setPixels(uint32_t* pixels) {
+    this->pixels = pixels;
 }   
 
 uint32_t SDL_IWindow::getPixel(int x, int y) {
@@ -97,5 +118,7 @@ uint32_t SDL_IWindow::getPixel(int x, int y) {
 }
 
 void SDL_IWindow::clearBuffer() {
-    
+    for (int x = 0; x < width*height; x++) {
+        pixels[x] = hex_bg;
+    }
 }

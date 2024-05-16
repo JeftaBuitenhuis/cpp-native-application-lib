@@ -10,8 +10,8 @@ GUI_section::~GUI_section() {
     delete renderer;
 }
 
-GUI_screen* GUI_section::getScreen() {
-    return renderer->getScreen();
+uint32_t* GUI_section::getPixels() {
+    return renderer->getPixels();
 }
 
 int GUI_section::getPosX() {

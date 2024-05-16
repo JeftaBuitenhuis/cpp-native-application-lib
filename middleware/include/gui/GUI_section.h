@@ -2,7 +2,6 @@
 #define GUI_SECTION_H
 
 #include "gui/GUI_renderer.h"
-#include "gui/GUI_screen.h"
 
 class GUI_section {
     private:
@@ -12,7 +11,7 @@ class GUI_section {
         GUI_renderer* renderer;
 
     public:
-        GUI_screen* getScreen();
+        uint32_t* getPixels();
         GUI_section(GUI_renderer* renderer, int pos_y, int pos_x);
         ~GUI_section();
         int getPosX();

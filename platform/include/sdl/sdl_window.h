@@ -15,6 +15,7 @@ class SDL_IWindow : public Window {
         SDL_Window* win;
         SDL_Renderer *renderer;
         SDL_Event event;
+        std::chrono::_V2::steady_clock::time_point start = std::chrono::steady_clock::now();
         
     protected:
         virtual void main() override;
@@ -23,11 +24,10 @@ class SDL_IWindow : public Window {
         SDL_IWindow(int width, int height, uint32_t hex_bg, int flags);
         virtual void setPixel(int, int, uint32_t) override;
         virtual uint32_t getPixel(int x, int y) override;
-        virtual void setScreen(GUI_screen* screen) override;
-        virtual GUI_screen getScreen() override;
+        virtual void setPixels(uint32_t* pixels) override;
         virtual void update() override;
         virtual void join() override;
-        virtual void clearScreen() override;
+        virtual void clearBuffer() override;
         ~SDL_IWindow();
 };
 
