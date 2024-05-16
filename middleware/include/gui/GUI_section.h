@@ -18,6 +18,7 @@ class GUI_section {
         int getPosY();
         void update();
         void clear();
+        void setPixels();
 };
 
 #endif

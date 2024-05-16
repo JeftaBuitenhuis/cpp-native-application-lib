@@ -4,7 +4,7 @@
 #include <chrono>
 
 #include "gui/GUI_section.h"
-#include "gui/GUI_renderer.h"
+#include "gui/GUI_grid_renderer.h"
 //#include "app/application.cpp"
 
 //! multiple windows not supported currently
@@ -14,52 +14,27 @@
 int main() {
     Window* win = new SDL_IWindow(1000, 1000, 0x00000000, GUI_MANUAL_UPDATE);
 
-    GUI_renderer* renderer = new GUI_renderer(win, 500, 500, 0xFFFFFFFF);
+    GUI_grid_renderer* renderer = new GUI_grid_renderer(win, 1000, 1000, 0xFFFFFFFF, 50);
     //GUI_renderer* renderer2 = new GUI_renderer(win, 500, 500, 0xFFFFFFFF);
     GUI_section* section = new GUI_section(renderer, 0, 0);
-    GUI_section* section1 = new GUI_section(renderer, 0, 500);
-    GUI_section* section2 = new GUI_section(renderer, 500, 0);
-    GUI_section* section3 = new GUI_section(renderer, 500, 500);
 
     bool up = true;
     bool left = true;
 
+    int x = 0;
+
     auto next = std::chrono::steady_clock::now();
     while (!win->getTerminate()) {
-        if (up && left) {
-            for (int x = 0; x < 250; x++) {
-                renderer->setPixel(x, x, 0x00000000);
-            }
-            left = !left;
-        }
 
-        else if (up && !left) {
-            for (int x = 0; x < 250; x++) {
-                renderer->setPixel(500-x, x, 0x00000000);
-            }
-            up = !up;
-        }
+        renderer->setPixel(x, 5, 0xFF0000FF);
 
-        else if (!up && !left) {
-            for (int x = 0; x < 250; x++) {
-                renderer->setPixel(500-x, 500-x, 0x00000000);
-            }
-            left = !left;
-        }
-
-        else if (!up && left) {
-            for (int x = 0; x < 250; x++) {
-                renderer->setPixel(x, 500-x, 0x00000000);
-            }
-            up = !up;
-        }
-
+        section->setPixels();
         section->update();
-        section1->update();
-        section2->update();
-        section3->update();
-        section3->clear();
-        next += std::chrono::milliseconds(0);
+        section->clear();
+
+        x++; 
+
+        next += std::chrono::milliseconds(1000);
         std::this_thread::sleep_until(next);
     }
 

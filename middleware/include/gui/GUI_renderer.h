@@ -5,7 +5,7 @@
 #include "window.h"
 
 class GUI_renderer {
-    private:
+    protected:
         uint32_t* pixels;
         int width;
         int height;
@@ -22,6 +22,7 @@ class GUI_renderer {
             if (y < height && x < width)
             pixels[x + (y * width)] = hex;
         }
+        void setPixels(int pos_x, int pos_y);
 
 };
 

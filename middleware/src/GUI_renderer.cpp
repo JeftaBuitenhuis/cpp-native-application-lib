@@ -33,6 +33,10 @@ void GUI_renderer::update(int pos_x, int pos_y) {
     win->update();
 }
 
+void GUI_renderer::setPixels(int pos_x, int pos_y) {
+    win->setPixels(pixels, width, height, pos_x, pos_y);
+}
+
 void GUI_renderer::clear() {
     for (int i = 0; i < width * height; i++) {
         pixels[i] = hex_bg;

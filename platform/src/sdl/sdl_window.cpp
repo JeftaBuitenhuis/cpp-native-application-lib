@@ -88,7 +88,7 @@ void SDL_IWindow::update() {
     SDL_UnlockTexture(buffer);
 
     // Clear the renderer
-    SDL_RenderClear(renderer);
+    //SDL_RenderClear(renderer);
 
     // Copy the texture to the renderer
     SDL_RenderCopy(renderer, buffer, nullptr, nullptr);

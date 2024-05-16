@@ -29,3 +29,7 @@ void GUI_section::update() {
 void GUI_section::clear() {
     renderer->clear();
 }
+
+void GUI_section::setPixels() {
+    renderer->setPixels(this->pos_x, this->pos_y);
+}
