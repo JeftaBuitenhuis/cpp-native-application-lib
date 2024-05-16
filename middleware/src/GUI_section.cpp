@@ -21,3 +21,11 @@ int GUI_section::getPosX() {
 int GUI_section::getPosY() {
     return pos_y;
 }
+
+void GUI_section::update() {
+    renderer->update(pos_x, pos_y);
+}
+
+void GUI_section::clear() {
+    renderer->clear();
+}

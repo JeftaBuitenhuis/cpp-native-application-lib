@@ -16,7 +16,8 @@ class GUI_section {
         ~GUI_section();
         int getPosX();
         int getPosY();
-
+        void update();
+        void clear();
 };
 
 #endif

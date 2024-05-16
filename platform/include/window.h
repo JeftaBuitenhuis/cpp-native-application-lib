@@ -29,7 +29,7 @@ class Window {
 
         virtual void setPixel(int, int, uint32_t) = 0;
         virtual uint32_t getPixel(int x, int y) = 0;
-        virtual void setPixels(uint32_t* pixels) = 0;
+        virtual void setPixels(uint32_t* pixels, int width, int height, int x, int y) = 0;
         virtual void update() = 0;
         virtual void join() = 0;
         virtual void clearBuffer() = 0;

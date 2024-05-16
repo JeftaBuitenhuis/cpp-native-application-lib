@@ -24,7 +24,7 @@ class SDL_IWindow : public Window {
         SDL_IWindow(int width, int height, uint32_t hex_bg, int flags);
         virtual void setPixel(int, int, uint32_t) override;
         virtual uint32_t getPixel(int x, int y) override;
-        virtual void setPixels(uint32_t* pixels) override;
+        virtual void setPixels(uint32_t* pixels, int width, int height, int x, int y) override;
         virtual void update() override;
         virtual void join() override;
         virtual void clearBuffer() override;

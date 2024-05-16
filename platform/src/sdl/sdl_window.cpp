@@ -76,7 +76,7 @@ void SDL_IWindow::setPixel(int x, int y, uint32_t hex) {
 }
 
 void SDL_IWindow::update() {
-    int pitch = width * height * sizeof(uint32_t) + 10; // Declare a variable to store the pitch
+    int pitch = width * height * sizeof(uint32_t); // Declare a variable to store the pitch
     if (SDL_LockTexture(buffer, nullptr, (void **)&pixels, &pitch) != 0) {
         std::cerr << "Failed to lock texture: " << SDL_GetError() << std::endl;
         return;
@@ -97,7 +97,7 @@ void SDL_IWindow::update() {
     SDL_RenderPresent(renderer);
 
     // Optionally, clear the buffer or perform other cleanup
-    clearBuffer();
+    //clearBuffer();
     // Capture the current time after running the code
     auto end = std::chrono::steady_clock::now();
 
@@ -109,8 +109,16 @@ void SDL_IWindow::update() {
     start = std::chrono::steady_clock::now();
 }
 
-void SDL_IWindow::setPixels(uint32_t* pixels) {
-    this->pixels = pixels;
+void SDL_IWindow::setPixels(uint32_t* pixels, int width, int height, int x, int y) {
+    for (int i_y = y; i_y - y < height; i_y++) {
+        for (int i_x = x; i_x - x < width; i_x++) {
+            int pos = i_x + (i_y * this->width);
+            if (pos < this->width * this->height) {
+                this->pixels[pos] = pixels[(i_x-x) + ((i_y - y) * width)];
+            }
+        }
+    }
+    
 }   
 
 uint32_t SDL_IWindow::getPixel(int x, int y) {
