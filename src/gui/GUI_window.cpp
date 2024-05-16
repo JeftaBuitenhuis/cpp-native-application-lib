@@ -8,7 +8,7 @@ GUI_window::GUI_window(int width, int height, int flags) {
 }
 
 void GUI_window::addSection(GUI_section* section) {
-    sections.push_back(section);
+    sections.push_back(section); // TODO should include z-index at insertion
 }
 
 void GUI_window::init() {
