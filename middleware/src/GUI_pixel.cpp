@@ -1,4 +1,4 @@
-#include "gui/common/GUI_pixel.h"
+#include "gui/GUI_pixel.h"
 
 uint32_t GUI_pixel::getHex() {
     return this->hex;

@@ -3,7 +3,7 @@
 #ifndef PUF_EVENT_H
 #define PUF_EVENT_H
 
-#include <puffin/PUF_queue.h>
+#include <event/PUF_queue.h>
 #include <cstdint>
 
 typedef enum {

@@ -1,6 +1,6 @@
 //! popfind() unstable -> segfault
 
-#include "puffin/PUF_event.h"
+#include "event/PUF_event.h"
 
 PUF_EventHandler* PUF_EventHandler::instance = nullptr;
 

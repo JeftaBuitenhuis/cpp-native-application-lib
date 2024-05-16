@@ -1,4 +1,4 @@
-#include "gui/module/GUI_renderer.h"
+#include "gui/GUI_renderer.h"
 
 GUI_renderer::GUI_renderer(int width, int height) {
     screen = new GUI_screen(width, height);

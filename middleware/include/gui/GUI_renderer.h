@@ -1,7 +1,7 @@
 #ifndef GUI_RENDERER_H
 #define GUI_RENDERER_H
 
-#include "gui/common/GUI_screen.h"
+#include "gui/GUI_screen.h"
 
 class GUI_renderer {
     private:

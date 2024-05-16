@@ -1,4 +1,4 @@
-#include "gui/window/GUI_window.h"
+/*#include "gui/GUI_window.h"
 #include <iostream>
 
 GUI_window::GUI_window(int width, int height, int flags) {
@@ -100,4 +100,4 @@ void GUI_window::join() {
 
 GUI_window::~GUI_window() {
     
-}
+}*/

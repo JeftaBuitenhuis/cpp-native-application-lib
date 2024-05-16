@@ -1,4 +1,4 @@
-#include "gui/section/GUI_section.h"
+#include "gui/GUI_section.h"
 
 GUI_section::GUI_section(GUI_renderer* renderer, int pos_x, int pos_y) {
     this->renderer = renderer;

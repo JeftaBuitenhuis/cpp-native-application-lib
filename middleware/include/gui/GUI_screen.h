@@ -2,7 +2,7 @@
 #define GUI_SCREEN_H
 
 #include <cstdint>
-#include "gui/common/GUI_pixel.h"
+#include "gui/GUI_pixel.h"
 
 class GUI_screen {
     private:

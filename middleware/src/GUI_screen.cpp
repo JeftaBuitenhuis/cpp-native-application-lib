@@ -1,4 +1,4 @@
-#include "gui/common/GUI_screen.h"
+#include "gui/GUI_screen.h"
 
 GUI_screen::GUI_screen(int width, int height) {
     this->width = width;

@@ -1,8 +1,8 @@
 #ifndef GUI_SECTION_H
 #define GUI_SECTION_H
 
-#include "gui/module/GUI_renderer.h"
-#include "gui/common/GUI_screen.h"
+#include "gui/GUI_renderer.h"
+#include "gui/GUI_screen.h"
 
 class GUI_section {
     private:

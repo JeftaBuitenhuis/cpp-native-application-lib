@@ -1,3 +1,4 @@
+/*
 #include <thread>
 #include <chrono>
 #include <iostream>
@@ -129,3 +130,4 @@ int Renderer::destroy() {
     renderer_thread.join();
     return 0;
 }
+*/
