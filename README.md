@@ -1,1 +1,1 @@
-Definitly not finished, still in development
+definitely not finished, still in development
